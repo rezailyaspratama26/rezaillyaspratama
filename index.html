@@ -544,15 +544,15 @@
         }
         
         .why-item {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-            align-items: flex-start;
-            transition: var(--transition);
-            background: rgba(23, 4, 95, 0.05);
-            padding: 20px;
-            border-radius: 10px;
-        }
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    align-items: flex-start;
+    transition: var(--transition);
+    background: rgba(23, 4, 95, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+}
         
         .why-item:hover {
             transform: translateX(10px);
@@ -560,18 +560,18 @@
         }
         
         .why-icon {
-            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 24px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 24px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
         
         .why-content h3 {
             color: var(--primary);
@@ -855,6 +855,19 @@
         .content-block li {
             margin-bottom: 8px;
         }
+
+        /* Responsif untuk mobile */
+@media (max-width: 768px) {
+    .why-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .why-icon {
+        margin-bottom: 15px;
+    }
+}  
         
         /* Responsive Design */
         @media (max-width: 992px) {
@@ -1758,37 +1771,49 @@
         </section>
         
         <section class="section" id="why">
-            <h2 class="section-title">Kenapa Memilih Saya?</h2>
-            <div class="why-list">
-                <div class="why-item">
-                    <div class="why-icon">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <div class="why-content">
-                        <h3>Kompetensi Relevan</h3>
-                        <p></p>
-                    </div>
-                </div>
-                
-                <div class="why-item">
-                    <div class="why-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <div class="why-content">
-                        <h3>Kemampuan Problem-Solving</h3>
-                        <p>Terbukti mampu mengidentifikasi masalah, menganalisis akar penyebab, dan mengembangkan solusi inovatif seperti dalam proyek Program Inovasi Desa yang memberikan dampak nyata bagi masyarakat.</p>
-                    </div>
-                </div>
-                
-                <div class="why-item">
-                    <div class="why-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <div class="why-content">
-                        <h3>Komitmen & Dedikasi</h3>
-                        <p>Memiliki rekam jejak yang konsisten dalam menyelesaikan proyek dengan kualitas tinggi tepat waktu, serta kemauan untuk terus belajar dan mengembangkan kompetensi baru.</p>
-                    </div>
-                </div>
+    <h2 class="section-title">Kenapa Memilih Saya?</h2>
+    <div class="why-list">
+        <div class="why-item">
+            <div class="why-icon">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="why-content">
+                <h3>Dasar Teknis yang Kuat</h3>
+                <p>IPK 3.69 dengan pemahaman konsep ekonomi dan statistik yang solid, didukung pengalaman praktis dalam analisis data menggunakan EViews, Excel, dan Python dasar.</p>
+            </div>
+        </div>
+        
+        <div class="why-item">
+            <div class="why-icon">
+                <i class="fas fa-lightbulb"></i>
+            </div>
+            <div class="why-content">
+                <h3>Pembelajar Cepat & Berinisiatif</h3>
+                <p>Terbukti mampu mempelajari hal baru dengan cepat, seperti ketika saya mengembangkan keterampilan manajemen proyek saat memimpin ProIDE dan kemampuan negosiasi sponsorship.</p>
+            </div>
+        </div>
+        
+        <div class="why-item">
+            <div class="why-icon">
+                <i class="fas fa-hands-helping"></i>
+            </div>
+            <div class="why-content">
+                <h3>Kemampuan Kolaborasi</h3>
+                <p>Pengalaman bekerja dalam tim multidisiplin selama magang di Kanwil DJKP dan berkolaborasi dengan berbagai pemangku kepentingan di ProIDE.</p>
+            </div>
+        </div>
+        
+        <div class="why-item">
+            <div class="why-icon">
+                <i class="fas fa-rocket"></i>
+            </div>
+            <div class="why-content">
+                <h3>Potensi Berkembang</h3>
+                <p>Sebagai pemula yang antusias, saya membawa energi segar dan kemauan kuat untuk belajar, berkembang, serta berkontribusi bagi tim.</p>
+            </div>
+        </div>
+    </div>
+</section>
                 
                 <div class="value-proposition">
                     <h3>Nilai Tambah yang Saya Bawa:</h3>
