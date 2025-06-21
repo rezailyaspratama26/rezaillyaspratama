@@ -60,6 +60,152 @@
             background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255,255,255,0) 70%);
             transform: rotate(30deg);
         }
+
+         .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .testimonial-card {
+            background: var(--secondary);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 15px;
+            line-height: 1.7;
+            color: #444;
+        }
+        
+        .testimonial-author {
+            text-align: right;
+            font-size: 0.9rem;
+            color: var(--accent-dark);
+        }
+        
+        .metric-highlight {
+            background: rgba(23, 4, 95, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: var(--accent-dark);
+        }
+        
+        .keyword-highlight {
+            background: linear-gradient(120deg, rgba(23, 4, 95, 0.1), rgba(23, 4, 95, 0.05));
+            padding: 0 4px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .competency-section {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(23, 4, 95, 0.1);
+        }
+        
+        .competency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .competency-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        
+        .competency-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .competency-icon {
+            font-size: 24px;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .metric-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+
+        .value-proposition {
+    margin-top: 40px;
+    padding: 25px;
+    background: rgba(23, 4, 95, 0.03);
+    border-radius: 10px;
+    border-left: 3px solid var(--accent);
+}
+
+.value-proposition h3 {
+    color: var(--primary);
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.value-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.value-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    transition: var(--transition);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.value-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 24px;
+}
         
         .header-content {
             position: relative;
@@ -874,9 +1020,54 @@
     </header>
     
     <div class="container">
-        <section class="section" id="profile">
+       <section class="section" id="profile">
             <h2 class="section-title">Profil Singkat</h2>
-            <p class="text-content">"Saya Reza Ilyas Pratama, mahasiswa Ekonomi Pembangunan Universitas Jambi dengan IPK 3.69. Sebagai individu yang proaktif dan memiliki inisiatif tinggi, saya selalu mencari peluang untuk belajar dan berkontribusi. Meskipun masih dalam tahap awal, saya telah membangun dasar kuat dalam analisis data (menggunakan Excel, Google Colab, VS Code) dan pemodelan ekonometrika, dibuktikan melalui proyek analisis. Saya memiliki pengalaman langsung dalam manajemen acara, berhasil memimpin dua kelas edukasi sebagai Ketua Pelaksana, dan aktif dalam pengembangan kemitraan & penggalangan dana untuk berbagai acara kampus. Ini mengasah kemampuan saya dalam koordinasi, negosiasi, dan kerja sama tim. Saya adalah pembelajar cepat yang bersemangat untuk mendalami bidang data, manajemen proyek, pengembangan bisnis, dan keuangan. Saya siap untuk menerapkan etos kerja keras dan kemauan belajar tinggi saya untuk memberikan nilai tambah bagi organisasi Anda."</p>
+            <p class="text-content">
+                "Saya Reza Ilyas Pratama, mahasiswa Ekonomi Pembangunan Universitas Jambi dengan IPK 3.69. 
+                Sebagai individu yang proaktif dan memiliki inisiatif tinggi, saya selalu mencari peluang untuk 
+                belajar dan berkontribusi. Meskipun masih dalam tahap awal, saya telah membangun dasar kuat 
+                dalam <span class="keyword-highlight">analisis data</span> (menggunakan Excel, Google Colab, VS Code) 
+                dan <span class="keyword-highlight">pemodelan ekonometrika</span>, dibuktikan melalui proyek analisis. 
+                Saya memiliki pengalaman langsung dalam <span class="keyword-highlight">manajemen acara</span>, 
+                berhasil memimpin dua kelas edukasi sebagai Ketua Pelaksana, dan aktif dalam 
+                <span class="keyword-highlight">pengembangan kemitraan & penggalangan dana</span> untuk berbagai acara kampus. 
+                Ini mengasah kemampuan saya dalam koordinasi, negosiasi, dan kerja sama tim. 
+                Saya adalah pembelajar cepat yang bersemangat untuk mendalami bidang 
+                <span class="keyword-highlight">data, manajemen proyek, pengembangan bisnis, dan keuangan</span>. 
+                Saya siap untuk menerapkan etos kerja keras dan kemauan belajar tinggi saya 
+                untuk memberikan nilai tambah bagi organisasi Anda."
+            </p>
+            
+            <!-- KOMPETENSI KUNCI -->
+            <div class="competency-section">
+                <h3>Kompetensi Kunci</h3>
+                <div class="competency-grid">
+                    <div class="competency-item">
+                        <div class="competency-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>Analisis Data</div>
+                    </div>
+                    <div class="competency-item">
+                        <div class="competency-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div>Manajemen Proyek</div>
+                    </div>
+                    <div class="competency-item">
+                        <div class="competency-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div>Pengembangan Bisnis</div>
+                    </div>
+                    <div class="competency-item">
+                        <div class="competency-icon">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <div>Manajemen Keuangan</div>
+                    </div>
+                </div>
+            </div>
         </section>
         
         <section class="section" id="projects">
@@ -1567,7 +1758,7 @@
         </section>
         
         <section class="section" id="why">
-            <h2 class="section-title">Kenapa Saya?</h2>
+            <h2 class="section-title">Kenapa Memilih Saya?</h2>
             <div class="why-list">
                 <div class="why-item">
                     <div class="why-icon">
@@ -1598,8 +1789,37 @@
                         <p>Memiliki rekam jejak yang konsisten dalam menyelesaikan proyek dengan kualitas tinggi tepat waktu, serta kemauan untuk terus belajar dan mengembangkan kompetensi baru.</p>
                     </div>
                 </div>
+                
+                <div class="value-proposition">
+                    <h3>Nilai Tambah yang Saya Bawa:</h3>
+                     <div class="value-grid">
+                     <div class="value-card">
+                     <div class="value-icon">
+                         <i class="fas fa-search"></i>
+                        </div>
+                        <h4>Analisis Berbasis Data</h4>
+                        <p>Kemampuan mengubah data kompleks menjadi insight actionable</p>
+                    </div>
+            
+                <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                     <h4>Eksekusi Tepat Waktu</h4>
+                    <p>Konsisten menyelesaikan proyek dengan kualitas tinggi sesuai deadline</p>
+                </div>
+            
+                <div class="value-card">
+                <div class="value-icon">
+                      <i class="fas fa-sync"></i>
+                </div>
+                    <h4>Proses Iteratif</h4>
+                    <p>Pendekatan berbasis feedback untuk perbaikan berkelanjutan</p>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
+        
     </div>
     
     <footer>
