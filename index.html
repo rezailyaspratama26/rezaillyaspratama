@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Magang Reza Ilyas Pratama</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3d0101;
+            --primary-dark: #440000;
+            --secondary: #ffffff;
+            --dark: #060041;
+            --light: #ffffff;
+            --gray: #002e02;
+            --accent: #17045f;
+            --accent-dark: #0e004d;
+            --shadow: 0 50px 150px rgba(15, 0, 102, 0.2);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #f5f9ff, #e6f0ff);
+            color: #000000;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--light);
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid rgba(0, 0, 0, 0.3);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 5px 150px rgba(21, 1, 102, 0.3);
+        }
+        
+        .profile-img img {
+            width: 250%;
+            height: 250%;
+            object-fit: cover;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            transition: transform 0.3s;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .contact-item a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background: var(--accent-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .section {
+            background-color: var(--light);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .section-title {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .project-card {
+            background: var(--secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s;
+            border: 1px solid var(--gray);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-header {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            padding: 20px;
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-content h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        /* Perbaikan CSS untuk Carousel */
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background: #f0f0f0;
+        }
+        
+        .carousel-inner {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-item {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .carousel-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+        
+        .carousel-controls {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .carousel-btn {
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .carousel-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+        
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .skill-card {
+            background: var(--secondary);
+            padding: 15px 20px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 200px;
+            border-left: 4px solid var(--accent);
+            transition: transform 0.3s;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .skill-card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .achievement-list {
+            margin-top: 20px;
+            padding-left: 20px;
+        }
+        
+        .achievement-list li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .achievement-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .why-list {
+            margin-top: 20px;
+        }
+        
+        .why-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            align-items: flex-start;
+            transition: transform 0.3s;
+        }
+        
+        .why-item:hover {
+            transform: translateX(10px);
+        }
+        
+        .why-icon {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .why-content h3 {
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        .data-viz {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .chart-container {
+            background: var(--secondary);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .chart-container:hover {
+            transform: scale(1.02);
+        }
+        
+        .chart {
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            margin: 20px 0;
+            gap: 15px;
+        }
+        
+        .bar {
+            width: 50px;
+            background: var(--accent);
+            border-radius: 5px 5px 0 0;
+            position: relative;
+            transition: height 0.5s ease;
+        }
+        
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            right: 0;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 0;
+            right: 0;
+            font-weight: bold;
+            color: var(--accent-dark);
+        }
+        
+        /* Experience Section */
+        .experience-section {
+            margin-top: 40px;
+        }
+        
+        .experience-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            background: var(--secondary);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .experience-item {
+            background: var(--secondary);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent);
+            transition: transform 0.3s;
+        }
+        
+        .experience-item:hover {
+            transform: translateX(10px);
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .experience-title {
+            font-weight: bold;
+            color: var(--accent-dark);
+        }
+        
+        .experience-date {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .experience-org {
+            margin-bottom: 10px;
+            color: #444;
+        }
+        
+        .cert-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .cert-link:hover {
+            color: var(--accent-dark);
+            text-decoration: underline;
+        }
+        
+        .activity-carousel {
+            margin-top: 15px;
+            height: 250px;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--light);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .btn-edit {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-edit:hover {
+            transform: scale(1.1);
+            background: var(--accent-dark);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .project-grid, .data-viz {
+                grid-template-columns: 1fr;
+            }
+            
+            .carousel {
+                height: 250px;
+            }
+            
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>PORTOFOLIO</h1>
+            <div class="profile-img">
+                <img src="foto reza 1.jpg" alt="Reza Ilyas Pratama">
+            </div>
+            <h1>REZA ILYAS PRATAMA</h1>
+            <div class="subtitle">Mahasiswa S1 Ekonomi Pembangunan | Junior Data Analyst / Research Assistant | Event Management | Business Development | Finance Intern</div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    rezailyaspratama@gmail.com 
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    +62 822-9673-6347
+                </div>
+                <div class="contact-item"> 
+                    <i class="fab fa-linkedin"></i>
+                    <a href="https://linkedin.com/in/rezailyaspratama" target="_blank">linkedin.com/in/rezailyaspratama</a>
+                </div>
+            </div>    
+
+            <a href="#projects" class="btn">Lihat Proyek Saya</a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section class="section" id="profile">
+            <h2 class="section-title">Profil Singkat</h2>
+            <p>Mahasiswa <strong>Ekonomi Pembangunan Universitas Jambi</strong> dengan kompetensi di bidang <strong>analisis keuangan perbankan</strong>, <strong>ekonometrika</strong>, dan <strong>manajemen risiko</strong>. Berpengalaman dalam pemodelan data panel, pengujian statistik, dan interpretasi data untuk mendukung strategi bisnis perbankan. Memiliki ketertarikan kuat pada transformasi digital sektor keuangan dan manajemen kredit.</p>
+        </section>
+        
+        <section class="section" id="projects">
+            <h2 class="section-title">Proyek Relevan</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Analisis Regresi Data Panel</h3>
+                        <p>Pengaruh Capital Adequacy Ratio, Non-Performing Loan, dan Investasi Digital terhadap Profitabilitas Bank Umum di Negara R (2015-2022)</p>
+                    </div>
+                    <div class="project-content">
+                        <p><strong>Latar Belakang:</strong> Menganalisis faktor penentu profitabilitas (ROA) 4 bank umum di Negara R (2015–2022).</p>
+                        <p><strong>Metodologi:</strong> Data panel 32 observasi (4 bank × 8 tahun) dianalisis dengan EViews.</p>
+                        <p><strong>Model Terpilih:</strong> Common Effect Model (Pooled OLS)</p>
+                        <p><strong>Temuan Kunci:</strong></p>
+                        <ul>
+                            <li>NPL berpengaruh negatif signifikan (p=0.0001)</li>
+                            <li>Investasi digital berpengaruh positif signifikan (p=0.0234)</li>
+                            <li>CAR tidak signifikan (p=0.1343)</li>
+                        </ul>
+                        <p><strong>Tools:</strong> EViews, Excel</p>
+                        <a href="PROYEK 2.pdf" class="btn">Lihat Laporan PDF</a>
+                        
+                        <!-- Carousel untuk gambar proyek -->
+                        <div class="carousel" id="project1-carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item">
+                                    <img src="PROYEK 2 FOTO 1.png" alt="Analisis Data" class="carousel-img">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="magang kanwil 1.jpeg" alt="Pengalaman Magang" class="carousel-img">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="magang kanwil 2.jpg" alt="Dokumentasi Magang" class="carousel-img">
+                                </div>
+                            </div>
+                            <div class="carousel-controls">
+                                <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                                <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                            <div class="carousel-indicators">
+                                <div class="indicator active"></div>
+                                <div class="indicator"></div>
+                                <div class="indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Visualisasi Data Keuangan</h3>
+                        <p>Analisis Tren Kinerja Perbankan 2015-2022</p>
+                    </div>
+                    <div class="project-content">
+                        <p><strong>Latar Belakang:</strong> Membuat visualisasi data kinerja keuangan perbankan untuk presentasi stakeholder.</p>
+                        <p><strong>Metodologi:</strong> Menggunakan Python (Matplotlib, Seaborn) dan Excel untuk visualisasi data.</p>
+                        <p><strong>Output:</strong></p>
+                        <ul>
+                            <li>Dashboard interaktif kinerja ROA, CAR, NPL</li>
+                            <li>Analisis korelasi antar variabel keuangan</li>
+                            <li>Proyeksi tren jangka menengah perbankan</li>
+                        </ul>
+                         <a href="#" class="btn">Lihat file Excel</a>
+                        
+                        <!-- Carousel untuk gambar proyek -->
+                        <div class="carousel" id="project2-carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item">
+                                    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80" alt="Dashboard" class="carousel-img">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Visualisasi Data" class="carousel-img">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="https://images.unsplash.com/photo-1586769852836-bc069f19e1b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Grafik Tren" class="carousel-img">
+                                </div>
+                            </div>
+                            <div class="carousel-controls">
+                                <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                                <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                            <div class="carousel-indicators">
+                                <div class="indicator active"></div>
+                                <div class="indicator"></div>
+                                <div class="indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" id="dashboard">
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>📊 Dashboard Penjualan Bulanan (Excel)</h3>
+                </div>
+                <div class="project-content">
+                    <p>Saya merancang dashboard interaktif menggunakan Microsoft Excel untuk memvisualisasikan penjualan produk per bulan. Dashboard ini memanfaatkan Pivot Table dan grafik dinamis untuk analisis tren penjualan.</p>
+                    <p><strong>Tools:</strong> Excel, Pivot Table, Conditional Formatting</p>
+                    <a href="#" class="btn">Lihat File Excel</a>
+                    
+                    <!-- Carousel untuk gambar dashboard -->
+                    <div class="carousel" id="dashboard-carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <img src="https://images.unsplash.com/photo-1618044733300-9472054094ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Dashboard Excel" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Tabel Pivot" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://images.unsplash.com/photo-1586769852044-692d6e3703f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Grafik Excel" class="carousel-img">
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                            <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="carousel-indicators">
+                            <div class="indicator active"></div>
+                            <div class="indicator"></div>
+                            <div class="indicator"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" id="skills">
+            <h2 class="section-title">Keterampilan Teknis</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <h3><i class="fas fa-chart-line"></i> Analisis Data</h3>
+                    <ul>
+                        <li>Regresi data panel dan ecm</li>
+                        <li>Uji asumsi klasik</li>
+                        <li>Statistik deskriptif & inferensial</li>
+                        <li>Interpretasi output ekonometrika</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-card">
+                    <h3><i class="fas fa-laptop-code"></i> Teknologi & Tools</h3>
+                    <ul>
+                        <li>Microsoft Office (Excel, Word, PowerPoint)_Menengah</li>
+                        <li>Google Workspace (Docs, Sheets, Slides)_Menengah</li>
+                        <li>SPSS, EViews (Lanjutan)</li>
+                        <li>Python (Dasar)</li>
+                        <li>VS Code, Google Colab (Dasar)</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-card">
+                    <h3><i class="fas fa-book"></i> Mata Kuliah Relevan</h3>
+                    <ul>
+                        <li>Statistik Ekonomi I & II</li>
+                        <li>Ekonometrika I & 2</li>
+                        <li>Aplikasi Komputer</li>
+                        <li>Metodologi Penelitian</li>
+                        <li>Matematika Ekonomi dan Bisnis Lanjutan</li>
+                        <li>Pengantar Bisnis</li>
+                        <li>Praktik Kewirausahaan</li>
+                        <li>Analisis Investasi dan Kelayakan Bisnis</li>
+                        <li>Pengantar Manajemen</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" id="achievements">
+            <h2 class="section-title">Pencapaian Akademik</h2>
+            <ul class="achievement-list">
+                <li><strong>IPK 3.69/4.00</strong> - Semester 6 Program Studi Ekonomi Pembangunan</li>
+                <li><strong>Finalis</strong> lomba penulisan essay tingkat nasional oleh UKM Seni Religi Institut Pertanian Bogor</li>
+                <li><strong>Juara 1</strong> lomba Debat KDMI Tahun 2024 tingkat Fakultas Ekonomi dan Bisnis Universitas Jambi</li>
+                <li><strong>Best Speaker 4</strong> lomba Debat KDMI Tahun 2024 tingkat Fakultas Ekonomi dan Bisnis Universitas Jambi</li>
+                <li><strong>Juara 1 </strong>Kategori Umum Reels Video Hari Indonesia Menabung Tahun 2024 Oleh OJK Provinsi Jambi</li>
+                <li><strong>Penerima Pendanaan Program Inovasi Desa (Pro-IDE 2024) </strong> Yang Diberikan Oleh Universitas Jambi Pada Tahun 2024</li>
+            </ul>
+        </section>
+        
+        <section class="section" id="training">
+            <h2 class="section-title">Pelatihan</h2>
+            <ul class="achievement-list">
+                <li><strong>Pelatihan Data Analysis</strong> - Dicoding Indonesia (2023)</li>
+                <li><strong>Pelatihan Statistik dengan SPSS</strong> - Universitas Jambi (2022)</li>
+                <li><strong>Workshop Ekonometrika</strong> - Himpunan Mahasiswa Ekonomi Pembangunan (2023)</li>
+            </ul>
+        </section>
+        
+        <!-- Experience Section -->
+        <section class="section experience-section" id="experience">
+            <h2 class="section-title">Pengalaman</h2>
+            
+            <div class="experience-tabs">
+                <button class="tab-btn active" data-tab="work">Pengalaman Profesional</button>
+                <button class="tab-btn" data-tab="org">Organisasi</button>
+                <button class="tab-btn" data-tab="volunteer">Volunteer/Panitia</button>
+            </div>
+            
+            <div class="tab-content active" id="work-content">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">Magang, Kanwil Direktorat Jenderal Perbendaharaan Provinsi Jambi</div>
+                        <div class="experience-date">Juli 2024 - Agustus 2024</div>
+                    </div>
+                    <div class="experience-org">Bidang Pelaksanaan Anggaran II</div>
+                    <ul>
+                        <li>Membantu pelaksanana tugas dan fungsi pada Bidang PPA II</li>
+                        <li>Membantu menyusun analisis Laporan ALCO dan analisis Kajian Fiskal Regional</li>
+                        <li>Melakukan analisis data untuk mendukung perencanaan dan pelaksanaan anggaran</li>
+                        <li>Berpartisipasi dalam rapat dan berkontribusi dalam diskusi mengenai alokasi dan pengeluaran anggaran</li>
+                        <li><strong>Tools:</strong> Excel, Canva, Word</li>
+                    </ul>
+                    <a href="Sertifikat Magang (240231000076).pdf" class="cert-link"><i class="fas fa-certificate"></i> Lihat Sertifikat</a>
+                    
+                    <div class="carousel activity-carousel" id="work-carousel1">
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <img src="magang kanwil 1.jpeg" alt="Kegiatan Magang" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="magang kanwil 2.jpg" alt="Dokumentasi Magang" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="magang kanwil 3.jpg" alt="Dokumentasi Magang" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="magang kanwil 4.jpg" alt="Dokumentasi Magang" class="carousel-img">
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                            <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="carousel-indicators">
+                            <div class="indicator active"></div>
+                            <div class="indicator"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">Agen Statistik 2024 Universitas Jambi</div>
+                        <div class="experience-date">Januari 2024 - Desember 2024</div>
+                    </div>
+                    <div class="experience-org">Badan Pusat Statistik Provinsi Jambi</div>
+                        <p>Pojok Statistik adalah lembaga resmi yang didirikan oleh Badan Pusat Statistik (BPS) Provinsi Jambi bekerjasama dengan Universitas Jambi (UNJA). Pojok Statistik merupakan salah satu upaya BPS dalam meningkatkan literasi statistik di kalangan akademisi.</p>
+                        <ul>
+                            <li>Bertugas di Pojok Statistik Universitas Jambi untuk menyediakan akses data dan informasi statistik kepada mahasiswa</li>
+                            <li>Melaksanakan promosi kegiatan Badan Pusat Statistik kepada mahasiswa melalui berbagai media</li>
+                            <li>Membantu dan mengedukasi mahasiswa dalam mencari data untuk keperluan akademik</li>
+                            <li>Meningkatkan kesadaran mahasiswa tentang statistik sosial dan populasi</li>
+                        </ul>
+                        <a href="SERTIFIKAT POJOK STATISTIK.pdf" class="cert-link"><i class="fas fa-certificate"></i> Lihat Sertifikat</a>
+                        <a href="SK NO 606 TENTANG PENUNJUKKAN AGEN STATISTIK PADA UNIVERSITAS JAMBI 2024.pdf" class="cert-link"><i class="fas fa-certificate"></i> Lihat SK </a>
+            
+                        <div class="carousel activity-carousel" id="work-carousel2">
+                            <div class="carousel-inner">
+                                <div class="carousel-item">
+                                    <img src="BPS 1.jpg" alt="Kegiatan Pojok Statistik" class="carousel-img">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="BPS 2.jpg" alt="Kegiatan Pojok Statistik" class="carousel-img">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="BPS 3.jpg" alt="Kegiatan Pojok Statistik" class="carousel-img">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="BPS 4.jpg" alt="Kegiatan Pojok Statistik" class="carousel-img">
+                                </div>         
+                            </div>
+                            <div class="carousel-controls">
+                                <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                                <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                            <div class="carousel-indicators">
+                                <div class="indicator active"></div>
+                                <div class="indicator"></div>
+                                <div class="indicator"></div>
+                                <div class="indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">Program Inovasi Desa (Pro-IDe) 2024</div>
+                        <div class="experience-date">Agustus - November 2024</div>
+                    </div>
+                    <div class="experience-org">Himpunan Mahasiswa Ekonomi Pembangunan (HIMAEP) Universitas Jambi.</div>
+                    <p><strong>Reza Ilyas Pratama Ketua Tim (Project Leader)</strong>
+                    <ul>   
+                        <li><strong>Judul Proyek:</strong> Mengintegrasikan Ekonomi Kreatif dan Pertanian Inovatif dalam Pembangunan Kampung Wisata Edukasi Hijau di Kelurahan Bakung Jaya.</il>
+                    </ul>
+                    <ul> 
+                        <li><strong>Ringkasan Proyek:</strong> Memimpin tim yang terdiri dari 15 mahasiswa dalam merancang dan mengeksekusi proyek pengembangan masyarakat dengan total anggaran sebesar Rp 20.000.000. Proyek ini bertujuan untuk meningkatkan potensi ekonomi dan kesejahteraan masyarakat Kelurahan Bakung Jaya melalui integrasi sektor ekonomi kreatif dan pertanian inovatif, serta membangun citra daerah sebagai Kampung Wisata Edukasi Hijau.</il>
+                    </ul>
+                      <ul> 
+                        <li><strong>Peran dan Tanggung Jawab Utama:</strong> Sebagai Ketua Tim, saya bertanggung jawab penuh atas keberhasilan proyek, dengan fokus pada:</il>
+                            <p><strong>Kepemimpinan & Koordinasi</strong>: Memimpin dan mengoordinasikan seluruh anggota tim (15 orang) dalam setiap tahap proyek, mulai dari perencanaan, pelaksanaan, hingga evaluasi.</p>
+                            <p><strong>Perencanaan Strategis:</strong> Menggagas konsep, menyusun proposal program, dan merancang jadwal kegiatan yang komprehensif selama 3 bulan.</p>
+                            <p><strong>Manajemen Pemangku Kepentingan:</strong>Menjadi penghubung utama dan membangun hubungan kerja yang produktif dengan berbagai pihak, termasuk dosen pembimbing, aparat kelurahan, UMKM, kelompok tani, dan masyarakat lokal.</p>
+                            <p><strong>Manajemen Proyek & Pelaporan:</strong> Memastikan seluruh program berjalan sesuai jadwal dan anggaran, serta menyusun Laporan Akhir sebagai bentuk pertanggungjawaban kepada pihak universitas dan mitra.</p>
+                    </ul>
+                        <ul><strong><li>Pencapaian & Dampak Proyek (Key Achievements):</strong></li>Di bawah kepemimpinan saya, tim berhasil memberikan dampak nyata bagi masyarakat, antara lain:</ul>
+                            <p><strong>Peningkatan Nilai Tambah Produk Lokal: </strong>Menginisiasi dan melaksanakan program pembuatan produk inovatif "Mie Sawi Hijau" dari hasil kebun lokal, memberikan nilai tambah pada produk pertanian yang sebelumnya dijual mentah.</p>
+                            <p><strong>Digitalisasi UMKM: </strong>Berhasil meningkatkan kapasitas digital UMKM dengan memfasilitasi adopsi pembayaran non-tunai melalui penyerahan QRIS dan membuatkan akun Instagram sebagai platform promosi bersama.</p>
+                            <p><strong>Inovasi Pertanian Berkelanjutan: </strong>Memperkenalkan solusi pengelolaan limbah organik melalui pelatihan pembuatan eco-enzyme, mengubah sampah sayuran menjadi produk bernilai ekonomis dan ramah lingkungan.</p>
+                            <p><strong>Penguatan Infrastruktur Pariwisata:</strong> Merancang dan memproduksi materi promosi berupa brosur paket wisata serta memasang plang penunjuk jalan, guna meningkatkan daya tarik dan aksesibilitas Desa Wisata Baselang </p>
+                            <p><strong>Pengamanan Hak Cipta:</strong>Secara proaktif mendaftarkan dan berhasil mendapatkan Surat Pencatatan Ciptaan (Hak Kekayaan Intelektual) untuk Program Inovasi Desa ini, memastikan pengakuan resmi atas karya dan inovasi tim</p>
+                        <ul><strong><li>Keterampilan yang Ditunjukkan:</strong></li></ul>
+                            <p>Kepemimpinan Proyek (Project Leadership)</p>
+                            <p>Manajemen Tim & Kolaborasi</p>
+                            <p>Pengembangan Masyarakat (Community Development)</p>
+                            <p>Perencanaan & Eksekusi Program</p>
+                            <p>Manajemen Anggaran & Sumber Daya</p>
+                            <p>Komunikasi & Hubungan Antar Lembaga</p>
+                            <p>Pemecahan Masalah & Inovasi</p>
+
+                    <a href="sertifikat Proide 2024-372.pdf" class="cert-link"><i class="fas fa-certificate"></i> Lihat Sertifikat ProIde</a>
+                    <a href="LAPORAN PENGABDIAN.pdf" class="cert-link"><i class="fas fa-certificate"></i> Lihat Laporan Akhir</a>
+                    <a href="https://drive.google.com/drive/folders/1yZu7xF-s5tytRvnY7pq0lxLdUgac1qWz" class="cert-link"><i class="fas fa-certificate"></i> Dokumentasi </a>
+                     <a href="sertifikat_EC002024225286.pdf" class="cert-link"><i class="fas fa-certificate"></i> Sertifikat HKI </a>
+                    <div class="carousel activity-carousel" id="work-carousel2">
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <img src="proide 10.jpg" alt="Dokumentasi ProIDE" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="proide 2.jpg" alt="Dokumentasi ProIDE" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="proide 3.jpg" alt="Dokumentasi ProIDE" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="proide 4.jpg" alt="Dokumentasi ProIDE" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="proide 5.jpg" alt="Dokumentasi ProIDE" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="proide 6.jpg" alt="Dokumentasi ProIDE" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="proide 7.jpg" alt="Dokumentasi ProIDE" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="proide 8.jpg" alt="Dokumentasi ProIDE" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="proide 9.jpg" alt="Dokumentasi ProIDE" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="proide 1.jpg" alt="Dokumentasi ProIDE" class="carousel-img">
+                            </div>                    
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                            <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="carousel-indicators">
+                            <div class="indicator active"></div>
+                            <div class="indicator"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="org-content">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">Wakil Coordinator Divisi Kewirausahaan </div>
+                        <div class="experience-date">Juni 2024 - Present</div>
+                    </div>
+                    <div class="experience-org">Himpunan Mahasiswa Ekonomi Pembangunan_FEB Universitas Jambi</div>
+                    <p>Sebagai Wakil Koordinator Kewirausahaan, saya bertanggung jawab untuk mengembangkan dan mengeksekusi berbagai inisiatif bisnis guna meningkatkan kemandirian finansial himpunan serta menumbuhkan semangat wirausaha di kalangan mahasiswa.</p>
+                    <li>Pencapaian & Tanggung Jawab Utama: Manajemen Proyek Merchandise: Memimpin dan mengelola dua proyek besar pengadaan merchandise: Baju Himpunan dan Baju Angkatan Mahasiswa Baru 2024. Bertanggung jawab penuh mulai dari tahap perencanaan desain, seleksi dan negosiasi dengan vendor, manajemen sistem pra-pemesanan (pre-order), hingga kontrol kualitas dan distribusi produk. Hasil: Berhasil menjual total lebih dari 350 unit dari kedua proyek dan memberikan kontribusi keuntungan yang signifikan untuk kas himpunan.</li>
+                     <li>Strategi Penjualan Acara (Event-Based Sales): Merancang dan mengeksekusi stan penjualan (booth) kewirausahaan pada acara Wisuda Universitas.Mengelola logistik, inventaris produk, dan strategi penjualan di lokasi untuk memaksimalkan pendapatan dalam satu hari.Hasil: Mencapai target penjualan dan berhasil meningkatkan visibilitas serta citra positif divisi kewirausahaan himpunan.</li>
+                    <a href="HIMA EP.pdf" class="cert-link"><i class="fas fa-certificate"></i> Lihat SK</a>
+                    
+                    <div class="carousel activity-carousel" id="org-carousel1">
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <img src="KWU 1.jpg" alt="Organisasi" class="carousel-img">
+                            </div>
+                             <div class="carousel-item">
+                                <img src="KWU 2.jpg" alt="Organisasi" class="carousel-img">
+                            </div>
+                             <div class="carousel-item">
+                                <img src="KWU 3.jpg" alt="Organisasi" class="carousel-img">
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                            <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="carousel-indicators">
+                            <div class="indicator active"></div>
+                            <div class="indicator"></div>
+                            <div class="indicator"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">Staf Human Resource and Development (HRD)</div>
+                        <div class="experience-date">Juni 2024 - Present</div>
+                    </div>
+                    <div class="experience-org"> UKM Kelompok Studi Pasar Modal ( KSPM ) _ Universitas Jambi</div>
+                    <p>Bertanggung jawab untuk pengelolaan dan pengembangan sumber daya manusia (anggota) di dalam organisasi, memastikan KSPM memiliki anggota yang kompeten, aktif, dan solid untuk mencapai visi dan misi organisasi.</p>
+                        <li>Berperan aktif dalam rekrutmen dan seleksi anggota baru.</li>
+                        <li> dan mengimplementasikan program pengembangan anggota.</li>
+                        <li> Meningkatkan keterlibatan anggota melalui berbagai inisiatif.</li>
+                        <li> Bertanggung jawab atas administrasi data anggota.</li>
+                    
+                    <div class="carousel activity-carousel" id="org-carousel1">
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <img src="KSPM 1.jpg" alt="Organisasi" class="carousel-img">
+                            </div>
+                             <div class="carousel-item">
+                                <img src="KSPM 2.jpg" alt="Organisasi" class="carousel-img">
+                            </div>
+                             <div class="carousel-item">
+                                <img src="KSPM 3.jpg" alt="Organisasi" class="carousel-img">
+                            </div>
+                               <div class="carousel-item">
+                                <img src="KSPM 4.jpg" alt="Organisasi" class="carousel-img">
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                            <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="carousel-indicators">
+                            <div class="indicator active"></div>
+                            <div class="indicator"></div>
+                            <div class="indicator"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="volunteer-content">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">Parcitipation World Cleanup Day Indonesia.</div>
+                        <div class="experience-date">September 2023</div>
+                    </div>
+                    <div class="experience-org">Aktivisme Lingkungan</div>
+                    <p>Pada tahun 2023, saya berpartisipasi dalam World Cleanup Day Jambi, sebuah acara tahunan yang diselenggarakan oleh World Cleanup Day Indonesia dan World Cleanup Organization Jambi. Acara ini bertujuan untuk membersihkan lingkungan dari sampah. Saya bergabung dengan ratusan relawan lainnya untuk membersihkan sampah di sekitar Desa Arab Melayu. Kami mengumpulkan sampah plastik, sampah kertas, dan sampah anorganik lainnya. Sampah yang terkumpul kemudian diangkut oleh petugas kebersihan untuk dibuang di tempat pembuangan akhir. Pengalaman ini sangat berharga bagi saya. Saya belajar pentingnya menjaga kebersihan lingkungan. Saya juga belajar bekerja sama dengan orang lain untuk mencapai tujuan bersama. </p>
+                    <li><strong>Dampak:</strong> Sampah yang terkumpul berhasil dibersihkan, sehingga membuat lingkungan lebih bersih dan sehat. Acara ini juga meningkatkan kesadaran publik tentang pentingnya menjaga kebersihan lingkungan.</li>
+                    <a href="volunter.pdf" class="cert-link"><i class="fas fa-certificate"></i> Lihat Sertifikat</a>
+                    
+                    <div class="carousel activity-carousel" id="volunteer-carousel1">
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <img src="volunter 1.jpg" alt="Volunteer" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="volunter 2.jpg" alt="Volunteer" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="volunter 3.jpg" alt="Volunteer" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="volunter 4.jpg" alt="Volunteer" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="volunter 5.jpg" alt="Volunteer" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="volunter 6.jpg" alt="Volunteer" class="carousel-img">
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                            <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="carousel-indicators">
+                            <div class="indicator active"></div>
+                            <div class="indicator"></div>
+                            <div class="indicator"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">Panitia Acara Demand 5.0</div>
+                        <div class="experience-date">23 Mei 2023</div>
+                    </div>
+                    <div class="experience-org">Himpunan Mahasiswa Ekonomi Pembangunan (HIMA EP) FEB Univeritas Jambi</div>
+                    <ul><STRong>Divisi: Seminar</STRong></ul>
+                    <ul><STRong>Judul Acara:</STRong> "The Complexity of Generation Z in the Era of Society 5.0: Resilience and Strategies for Restructuring a New Society in Establishing a Sustainable Economy"</ul>
+                    <p> Sebagai anggota aktif Divisi Seminar, saya memiliki peran krusial dalam kesuksesan penyelenggaraan acara Demand 5.0. Tanggung jawab utama saya meliputi penjualan tiket seminar, rekapitulasi data penjualan tiket secara akurat, dan pelaporan keuangan terkait pemasukan dari penjualan tiket. Selain itu, saya juga bertanggung jawab dalam pencarian pemateri yang relevan dan berkompeten, serta berkoordinasi aktif dengan berbagai pihak terkait untuk memastikan kelancaran acara. Seminar ini merupakan platform penting untuk membahas tantangan dan strategi bagi Generasi Z di era Society 5.0 dalam membangun ekonomi berkelanjutan. Melalui peran ini, saya tidak hanya mengasah kemampuan organisasi dan komunikasi, tetapi juga mengembangkan keahlian dalam manajemen keuangan sederhana dan negosiasi. Kontribusi saya dalam aspek operasional dan finansial ini sangat mendukung keberhasilan acara yang diselenggarakan di Balairung Universitas Jambi pada tanggal 23 Mei 2024.</p>
+                    <a href="DEMAND 5.pdf" class="cert-link"><i class="fas fa-certificate"></i> Lihat Sertifikat</a>
+                    <div class="carousel activity-carousel" id="volunteer-carousel2">
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <img src="demand 1.jpg" alt="Panitia Demand" class="carousel-img">
+                            </div>
+                             <div class="carousel-item">
+                                <img src="demand 2.jpg" alt="Panitia Demand" class="carousel-img">
+                            </div>
+                             <div class="carousel-item">
+                                <img src="demand 3.jpg" alt="Panitia Demand" class="carousel-img">
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                            <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="carousel-indicators">
+                            <div class="indicator active"></div>
+                            <div class="indicator"></div>
+                        </div>
+                    </div>
+                </div> 
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">Panitia Kelas Edukasi Gemas 1</div>
+                        <div class="experience-date">23 Desember 2023 </div>
+                    </div>
+                    <div class="experience-org"> UKM Kelompk Studi Pasar Modal (KSPM) Universitas Jambi </div>
+                    <ul><STRong>Ketua Pelaksana</STRong></ul>
+                    <ul><STRong>Judul Acara:</STRong> Kelas Edukasi Gemas 1: Tema Basic Investing: First Step as a Great Investment</p>
+                        <P>Sebagai Ketua Pelaksana Kelas Edukasi Gemas 1, saya bertanggung jawab penuh atas perencanaan, pelaksanaan, dan evaluasi acara. Kelas ini bertemakan "Basic Investing: First Step as a Great Investment" dan bertujuan untuk memberikan pemahaman dasar mengenai investasi. Acara ini diselenggarakan secara virtual melalui Zoom. Sebagai ketua pelaksana, saya memastikan kelancaran acara dan mencapai tujuan edukasi yang ditetapkan.</P>
+                    <a href="sertifikat gemas 1.pdf" class="cert-link"><i class="fas fa-certificate"></i> Lihat Sertifikat</a>
+                    <div class="carousel activity-carousel" id="volunteer-carousel2">
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <img src="GEMAS 1.png" alt="Panitia gemas" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="GEMAS 2.png" alt="Panitia gemas" class="carousel-img">
+                            </div>
+                             <div class="carousel-item">
+                                <img src="GEMAS 3.png" alt="Panitia gemas" class="carousel-img">
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                            <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="carousel-indicators">
+                            <div class="indicator active"></div>
+                            <div class="indicator"></div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">Panitia Class HRD</div>
+                        <div class="experience-date"> 12 Oktober 2024 </div>
+                    </div>
+                    <div class="experience-org"> UKM Kelompk Studi Pasar Modal (KSPM) Universitas Jambi </div>
+                    <ul><STRong>Ketua Pelaksana</STRong></ul>
+                    <ul><STRong>Judul Acara:</STRong> Class HRD dengan Tema: "Your Story, Your Stage: Personal Branding Through Public Speaking".</p>
+                        <P>Sebagai Ketua Pelaksana Class HRD, saya memimpin keseluruhan proses perencanaan dan pelaksanaan acara virtual ini yang berfokus pada pengembangan personal branding dan public speaking.  Peran ini melibatkan berbagai aspek manajemen proyek, termasuk:</P>
+                        <li>Memimpin tim panitia untuk mencapai tujuan acara, mengalokasikan tugas, dan memastikan kolaborasi yang efektif.</li>
+                        <li>Merancang konten dan format acara yang relevan dengan kebutuhan pengembangan diri peserta di bidang personal branding dan public speaking.</li>
+                        <li>Mengelola semua aspek teknis dan operasional untuk acara yang diselenggarakan melalui Virtual Zoom.</li>
+                        <li>Memastikan acara berjalan sesuai jadwal dan menggunakan sumber daya secara efisien.</li>
+                        <li>Berkoordinasi dengan berbagai pihak, termasuk narasumber, tim, dan peserta.</li>
+                        <P>Pengalaman ini secara signifikan meningkatkan kemampuan saya dalam kepemimpinan, manajemen acara, pemecahan masalah, dan komunikasi, yang semuanya merupakan keterampilan kunci yang sangat dihargai oleh tim Sumber Daya Manusia (HRD).</P>
+                    <a href="SERTIFIKAT KELAS HRD.pdf" class="cert-link"><i class="fas fa-certificate"></i> Lihat Sertifikat</a>
+                    <div class="carousel activity-carousel" id="volunteer-carousel2">
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <img src="HRD 1.png" alt="Panitia Kelas HRD" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="HRD 2.png" alt="Panitia Kelas HRD" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="HRD 3.png" alt="Panitia Kelas HRD" class="carousel-img">
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                            <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="carousel-indicators">
+                            <div class="indicator active"></div>
+                            <div class="indicator"></div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">Panitia FEBSTACULAR 2024</div>
+                        <div class="experience-date"> 13-14 November 2024 </div>
+                    </div>
+                    <div class="experience-org"> Badan Eksekutif Mahasiswa FEB Universitas Jambi </div>
+                    <ul><STRong>Anggota Divisi Sponsorship</STRong></ul>
+                    <ul><STRong>Judul Acara:</STRong> National Competition Economic and Business FEBSTACULAR 2024 <strong>Tema:</strong> "KAJANGLAKO: Keberlanjutan, Adaptasi, dan Jaringan Untuk Akselerasi Nilai Guna dalam Ekonomi Digital dan Lokal"</p>
+                        <P>Sebagai anggota Divisi Sponsorship dalam kegiatan National Competition Economic and Business FEBSTACULAR 2024, saya berkontribusi dalam upaya penggalangan dana dan pencarian kemitraan untuk mendukung kelancaran acara berskala nasional ini. Acara ini diselenggarakan pada tanggal 13-14 November 2024  dengan tema "KAJANGLAKO: Keberlanjutan, Adaptasi, dan Jaringan Untuk Akselerasi Nilai Guna dalam Ekonomi Digital dan Lokal".Tanggung jawab saya meliputi:</P>
+                        <li>Membantu dalam identifikasi calon sponsor yang sesuai.</li>
+                        <li>Mendukung tim dalam penyusunan proposal sponsorship.</li>
+                        <li>Berpartisipasi dalam komunikasi dan presentasi kepada calon sponsor.</li>
+                        <li>Membantu dalam pemenuhan komitmen dan hak sponsor.</li>
+                        <li>Berkolaborasi dengan anggota tim untuk mencapai target penggalangan dana.</li>
+                        <P>Pengalaman ini telah memperkuat keterampilan saya dalam kerja tim, komunikasi interpersonal, negosiasi dasar, dan pemahaman tentang proses sponsorship dalam skala acara besar.</P>
+                    <a href="SERTIFIKAT KELAS HRD.pdf" class="cert-link"><i class="fas fa-certificate"></i> Lihat Sertifikat</a>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">Panitia Jambi Financial Inclusion Festival 2024</div>
+                        <div class="experience-date"> 28 November 2024 </div>
+                    </div>
+                    <div class="experience-org"> UKM Kelompk Studi Pasar Modal (KSPM) Universitas Jambi</div>
+                    <ul><STRong>Koordinator Panitia Sponsorship (CO Panitia Sponsorship)</STRong></ul>
+                    <ul><STRong>Tema Acara:</STRong> "Financial Literacy: The Key for Young Generation to Reach Financial Freedom" .</p>
+                        <P>Sebagai Koordinator Panitia Sponsorship untuk Jambi Financial Inclusion Festival 2024, saya memiliki peran penting dalam mengamankan dukungan dan kemitraan finansial untuk acara ini. Festival ini berfokus pada tema "Financial Literacy: The Key for Young Generation to Reach Financial Freedom", yang diselenggarakan oleh Kelompok Studi Pasar Modal Universitas Jambi. Tanggung jawab saya meliputi:</P>
+                        <li>Berpartisipasi dalam merancang strategi untuk mengidentifikasi calon sponsor yang sesuai dengan tema dan tujuan acara.</li>
+                        <li>Terlibat aktif dalam mendekati calon sponsor, mempresentasikan proposal, dan melakukan negosiasi untuk mencapai kesepakatan kemitraan.</li>
+                        <li>Membantu menjaga komunikasi dan hubungan baik dengan para sponsor, memastikan hak dan kewajiban kedua belah pihak terpenuhi.</li>
+                        <li>Berkontribusi dalam upaya penggalangan dana melalui sponsorship untuk mendukung operasional dan suksesnya acara.</li>
+                        <li>Berkolaborasi dengan anggota tim sponsorship lainnya untuk memastikan efisiensi dan efektivitas kerja dalam mencapai target.</li>
+                        <P>Pengalaman ini telah memperkuat keterampilan saya dalam negosiasi, komunikasi bisnis, manajemen proyek, dan kerja tim, yang semuanya penting dalam pengembangan karier profesional.</P>
+                    <a href="JFI.pdf" class="cert-link"><i class="fas fa-certificate"></i> Lihat Sertifikat</a>
+                    <div class="carousel activity-carousel" id="volunteer-carousel2">
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <img src="JFI 1.jpg" alt="Panitia jfi" class="carousel-img">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="JFI 2.jpg" alt="Panitia jfi" class="carousel-img">
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                            <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="carousel-indicators">
+                            <div class="indicator active"></div>
+                            <div class="indicator"></div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </section>
+        
+        <section class="section" id="why">
+            <h2 class="section-title">Kenapa Saya?</h2>
+            <div class="why-list">
+                <div class="why-item">
+                    <div class="why-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <div class="why-content">
+                        <h3>Kompetensi Relevan</h3>
+                        <p></p>
+                    </div>
+                </div>
+                
+                <div class="why-item">
+                    <div class="why-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="why-content">
+                        <h3>Kemampuan Problem-Solving</h3>
+                        <p></p>
+                    </div>
+                </div>
+                
+                <div class="why-item">
+                    <div class="why-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="why-content">
+                        <h3>Komitmen & Dedikasi</h3>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p>Portofolio Magang &copy; 2025 - Reza Ilyas Pratama</p>
+            <p>Program Studi Ekonomi Pembangunan, Universitas Jambi</p>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/rezailyaspratama" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+    
+    <div class="btn-edit" title="Edit Portofolio">
+        <i class="fas fa-edit"></i>
+    </div>
+
+    <script>
+        // Carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all carousels
+            const carousels = document.querySelectorAll('.carousel');
+            
+            carousels.forEach(carousel => {
+                const inner = carousel.querySelector('.carousel-inner');
+                const items = carousel.querySelectorAll('.carousel-item');
+                const prevBtn = carousel.querySelector('.prev');
+                const nextBtn = carousel.querySelector('.next');
+                const indicators = carousel.querySelectorAll('.indicator');
+                
+                let currentIndex = 0;
+                const totalItems = items.length;
+                
+                // Set initial active state
+                updateCarousel();
+                
+                // Auto slide every 5 seconds
+                let interval = setInterval(() => {
+                    nextSlide();
+                }, 5000);
+                
+                // Next slide function
+                function nextSlide() {
+                    currentIndex = (currentIndex + 1) % totalItems;
+                    updateCarousel();
+                }
+                
+                // Previous slide function
+                function prevSlide() {
+                    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+                    updateCarousel();
+                }
+                
+                // Update carousel display
+                function updateCarousel() {
+                    inner.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    
+                    // Update indicators
+                    indicators.forEach((indicator, index) => {
+                        if (index === currentIndex) {
+                            indicator.classList.add('active');
+                        } else {
+                            indicator.classList.remove('active');
+                        }
+                    });
+                }
+                
+                // Event listeners for buttons
+                if (prevBtn) prevBtn.addEventListener('click', () => {
+                    prevSlide();
+                    resetInterval();
+                });
+                
+                if (nextBtn) nextBtn.addEventListener('click', () => {
+                    nextSlide();
+                    resetInterval();
+                });
+                
+                // Event listeners for indicators
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => {
+                        currentIndex = index;
+                        updateCarousel();
+                        resetInterval();
+                    });
+                });
+                
+                // Reset interval function
+                function resetInterval() {
+                    clearInterval(interval);
+                    interval = setInterval(() => {
+                        nextSlide();
+                    }, 5000);
+                }
+            });
+            
+            // Tab functionality
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabId = btn.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and content
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked button and corresponding content
+                    btn.classList.add('active');
+                    document.getElementById(`${tabId}-content`).classList.add('active');
+                });
+            });
+            
+            // Chart animations
+            const bars = document.querySelectorAll('.bar');
+            bars.forEach(bar => {
+                const height = bar.style.height;
+                bar.style.height = '0';
+                setTimeout(() => {
+                    bar.style.height = height;
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
