@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisis Profitabilitas Bank | Reza Ilyas Pratama</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --accent: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --card-bg: #ffffff;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 60px 0 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 20px;
+            min-width: 200px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-title {
+            color: var(--primary);
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .card-title i {
+            background: rgba(37, 99, 235, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .plot-container {
+            background: var(--card-bg);
+            border-radius: 18px;
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            height: 500px;
+            overflow: hidden;
+        }
+        
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .insight-card {
+            background: linear-gradient(to bottom right, #f0f9ff, #e0f7fa);
+            border-radius: 16px;
+            padding: 25px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+        
+        .insight-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+        
+        .insight-title {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .insight-title i {
+            color: var(--accent);
+        }
+        
+        .conclusion {
+            background: linear-gradient(to right, #dbeafe, #d1fae5);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .conclusion::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 50%;
+        }
+        
+        .conclusion h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .conclusion ul {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .conclusion li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .conclusion li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 0 30px;
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-top: 40px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .filter-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+        
+        .filter-select {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
+            background: white;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+        
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+        
+        .model-equation {
+            background: linear-gradient(to right, #eff6ff, #dbeafe);
+            padding: 25px;
+            border-radius: 16px;
+            font-family: monospace;
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .model-equation::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        
+        .tag-primary {
+            background: rgba(37, 99, 235, 0.15);
+            color: var(--primary);
+        }
+        
+        .tag-success {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent);
+        }
+        
+        .tag-warning {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+        }
+        
+        .tag-danger {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--danger);
+        }
+        
+        @media (max-width: 1100px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .plot-container {
+                height: 450px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .plot-container {
+                height: 400px;
+            }
+            
+            .stat-card {
+                min-width: 150px;
+                padding: 15px;
+            }
+            
+            .stat-value {
+                font-size: 1.8rem;
+            }
+        }
+        
+        /* Perbaikan untuk visibilitas anotasi */
+        .annotation-box {
+            font-size: 14px !important;
+            font-weight: 600 !important;
+            text-shadow: 0 0 3px white, 0 0 5px white !important;
+            background: rgba(255, 255, 255, 0.8) !important;
+            padding: 6px 10px !important;
+            border-radius: 6px !important;
+            border: 1px solid rgba(0,0,0,0.1) !important;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Analisis Profitabilitas Perbankan</h1>
+                <p class="subtitle">Pengaruh CAR, NPL & Investasi Digital terhadap ROA</p>
+                <p>Studi Data Panel pada 4 Bank di Negara R (2015-2022)</p>
+                
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-value">32</div>
+                        <div class="stat-label">Observasi Data</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">4</div>
+                        <div class="stat-label">Bank Analisis</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">8</div>
+                        <div class="stat-label">Tahun Penelitian</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">51%</div>
+                        <div class="stat-label">Kekuatan Model (R²)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Ringkasan Eksekutif -->
+        <div class="card">
+            <h2 class="card-title"><i class="fas fa-chart-line"></i>Ringkasan Eksekutif</h2>
+            <p>Analisis regresi data panel ini menguji pengaruh Capital Adequacy Ratio (CAR), Non-Performing Loan (NPL), dan Investasi Digital terhadap Return on Assets (ROA) sebagai indikator profitabilitas pada 4 bank di Negara R selama periode 2015-2022.</p>
+            
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-title"><i class="fas fa-cogs"></i>Model Terpilih</div>
+                    <p>Pooled OLS (Common Effect Model) berdasarkan uji Chow, Hausman, dan Lagrange Multiplier. Model ini dipilih karena tidak ditemukan efek tetap maupun acak yang signifikan antar bank.</p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-title"><i class="fas fa-lightbulb"></i>Temuan Utama</div>
+                    <p>NPL berpengaruh negatif signifikan (-2.237), Investasi Digital berpengaruh positif signifikan (0.00305), sedangkan CAR tidak signifikan secara statistik.</p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-title"><i class="fas fa-check-circle"></i>Validitas Model</div>
+                    <p>Model memenuhi semua asumsi klasik: normalitas residual, homoskedastisitas, dan tidak ada multikolinearitas serius (F-statistik signifikan p=0.000147).</p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-title"><i class="fas fa-chart-pie"></i>Kekuatan Erklamasi</div>
+                    <p>Model mampu menjelaskan 51% variasi ROA (R² = 0.51), dengan Adjusted R² sebesar 0.46 setelah memperhitungkan jumlah variabel bebas.</p>
+                </div>
+            </div>
+            
+            <div class="conclusion">
+                <h3>Implikasi Strategis & Rekomendasi</h3>
+                <ul>
+                    <li><strong>Fokus pada Manajemen Risiko Kredit:</strong> Penurunan 1% NPL dapat meningkatkan ROA sebesar 2.237 poin. Rekomendasikan penguatan kebijakan penilaian kredit dan sistem monitoring NPL.</li>
+                    <li><strong>Akselerasi Transformasi Digital:</strong> Setiap tambahan Rp1 miliar investasi digital meningkatkan ROA sebesar 0.00305 poin. Prioritaskan investasi pada platform digital yang meningkatkan efisiensi operasional.</li>
+                    <li><strong>Optimasi Penggunaan Modal:</strong> Meskipun CAR tidak signifikan, pastikan modal dialokasikan ke aset produktif untuk meningkatkan profitabilitas.</li>
+                    <li><strong>Pemantauan Berkelanjutan:</strong> Lakukan analisis berkala untuk memantau dampak investasi digital terhadap profitabilitas dan efisiensi operasional.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Filter Kontrol -->
+        <div class="filters">
+            <div class="filter-group">
+                <label class="filter-label">Pilih Bank</label>
+                <select class="filter-select" id="bankSelect">
+                    <option value="all">Semua Bank</option>
+                    <option value="Bank Alpha">Bank Alpha</option>
+                    <option value="Bank Beta">Bank Beta</option>
+                    <option value="Bank Gamma">Bank Gamma</option>
+                    <option value="Bank Delta">Bank Delta</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label class="filter-label">Pilih Tahun</label>
+                <select class="filter-select" id="yearSelect">
+                    <option value="all">Semua Tahun (2015-2022)</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label class="filter-label">Pilih Variabel</label>
+                <select class="filter-select" id="variableSelect">
+                    <option value="ROA">ROA (Return on Assets)</option>
+                    <option value="NPL">NPL (Non-Performing Loan)</option>
+                    <option value="Digital">Investasi Digital</option>
+                    <option value="CAR">CAR (Capital Adequacy Ratio)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Visualisasi Utama -->
+        <div class="grid">
+            <div class="plot-container" id="timeSeriesPlot"></div>
+            <div class="plot-container" id="coefPlot"></div>
+        </div>
+        
+        <div class="grid">
+            <div class="plot-container" id="scatterPlot"></div>
+            <div class="plot-container" id="corrMatrix"></div>
+        </div>
+        
+        <!-- Model dan Hasil -->
+        <div class="card">
+            <h2 class="card-title"><i class="fas fa-calculator"></i>Model Regresi & Hasil Estimasi</h2>
+            
+            <div class="model-equation">
+                ROA<sub>it</sub> = 4.936 + 0.355·CAR<sub>it</sub> - 2.237·NPL<sub>it</sub> + 0.00305·Digital_Investment<sub>it</sub> + e<sub>it</sub>
+            </div>
+            
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-title"><i class="fas fa-arrow-down"></i>NPL (-2.237)</div>
+                    <p>Setiap kenaikan 1% NPL menurunkan ROA sebesar 2.237 poin <span class="tag tag-danger">p=0.0001</span></p>
+                    <p style="margin-top: 10px; font-size: 0.95rem; color: var(--gray);">
+                        <i class="fas fa-lightbulb"></i> Insight: Manajemen risiko kredit adalah kunci utama profitabilitas perbankan.
+                    </p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-title"><i class="fas fa-arrow-up"></i>Investasi Digital (0.00305)</div>
+                    <p>Setiap tambahan Rp1 miliar investasi meningkatkan ROA sebesar 0.00305 poin <span class="tag tag-success">p=0.0234</span></p>
+                    <p style="margin-top: 10px; font-size: 0.95rem; color: var(--gray);">
+                        <i class="fas fa-lightbulb"></i> Insight: Transformasi digital memberikan ROI positif dalam jangka menengah.
+                    </p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-title"><i class="fas fa-arrow-right"></i>CAR (0.355)</div>
+                    <p>Tidak signifikan secara statistik <span class="tag tag-warning">p=0.1343</span></p>
+                    <p style="margin-top: 10px; font-size: 0.95rem; color: var(--gray);">
+                        <i class="fas fa-lightbulb"></i> Insight: Kecukupan modal penting untuk stabilitas, tetapi tidak secara langsung meningkatkan profitabilitas.
+                    </p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-title"><i class="fas fa-cube"></i>Kekuatan Model</div>
+                    <p>R² = 0.51 <span class="tag tag-primary">Kekuatan Erklamasi</span></p>
+                    <p>F-statistik = 9.71 <span class="tag tag-success">p=0.000147</span></p>
+                    <p style="margin-top: 10px; font-size: 0.95rem; color: var(--gray);">
+                        <i class="fas fa-lightbulb"></i> Insight: Model memiliki kekuatan prediktif yang cukup baik untuk data panel perbankan.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Uji Asumsi Klasik -->
+        <div class="card">
+            <h2 class="card-title"><i class="fas fa-clipboard-check"></i>Validitas Model</h2>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-title"><i class="fas fa-bell-curve"></i>Uji Normalitas</div>
+                    <p>Residual berdistribusi normal (Jarque-Bera p>0.05)</p>
+                    <p style="margin-top: 10px; font-size: 0.95rem; color: var(--gray);">
+                        <i class="fas fa-lightbulb"></i> Insight: Memenuhi asumsi dasar regresi linier.
+                    </p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-title"><i class="fas fa-ruler-combined"></i>Uji Homoskedastisitas</div>
+                    <p>Tidak ada heteroskedastisitas (Uji Glejser p>0.05)</p>
+                    <p style="margin-top: 10px; font-size: 0.95rem; color: var(--gray);">
+                        <i class="fas fa-lightbulb"></i> Insight: Varians residual konsisten di semua observasi.
+                    </p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-title"><i class="fas fa-project-diagram"></i>Uji Multikolinearitas</div>
+                    <p>Tidak terdeteksi (Korelasi antar variabel <0.80)</p>
+                    <p style="margin-top: 10px; font-size: 0.95rem; color: var(--gray);">
+                        <i class="fas fa-lightbulb"></i> Insight: Tidak ada ketergantungan antar variabel independen.
+                    </p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-title"><i class="fas fa-check-double"></i>Kesimpulan Validitas</div>
+                    <p>Model memenuhi semua asumsi klasik regresi data panel</p>
+                    <p style="margin-top: 10px; font-size: 0.95rem; color: var(--gray);">
+                        <i class="fas fa-lightbulb"></i> Insight: Hasil estimasi dapat diandalkan untuk pengambilan keputusan.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Program Studi Ekonomi Pembangunan - Fakultas Ekonomi dan Bisnis - Universitas Jambi</p>
+            <p>© 2025 - Analisis dilakukan menggunakan EViews dan Python | Oleh: Reza Ilyas Pratama (C1A022046)</p>
+        </div>
+    </footer>
+
+    <script>
+        // Data untuk visualisasi
+        const bankData = {
+            banks: ['Bank Alpha', 'Bank Beta', 'Bank Gamma', 'Bank Delta'],
+            years: [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022],
+            roa: [
+                [2.75, 2.91, 3.58, 6.80, 4.00, 1.11, 2.17, 5.80],
+                [5.80, 6.54, 3.50, 5.69, 7.19, 3.47, 5.35, 3.06],
+                [3.60, 2.92, 3.94, 1.86, 4.86, 4.00, 4.34, 1.99],
+                [3.66, 6.11, 6.72, 6.28, 5.69, 6.77, 3.58, 5.64]
+            ],
+            npl: [
+                [5.21, 5.58, 5.37, 5.09, 5.72, 5.28, 5.97, 4.98],
+                [4.50, 3.62, 3.73, 3.62, 3.87, 4.28, 4.04, 4.64],
+                [4.78, 4.67, 5.24, 5.07, 4.44, 4.68, 5.09, 5.06],
+                [3.67, 2.99, 3.35, 3.59, 3.41, 3.21, 3.82, 3.34]
+            ],
+            car: [
+                [13.75, 12.78, 13.22, 13.95, 14.35, 14.19, 13.28, 13.83],
+                [11.77, 11.21, 11.57, 10.58, 11.52, 11.78, 11.90, 11.27],
+                [12.77, 12.99, 13.03, 12.23, 11.66, 13.33, 12.56, 12.43],
+                [15.19, 14.83, 13.88, 14.08, 14.01, 14.81, 13.21, 13.89]
+            ],
+            digital: [
+                [1866, 1828, 2026, 2109, 1871, 1825, 1836, 1964],
+                [1565, 1674, 1568, 1852, 1703, 1677, 1508, 1766],
+                [1645, 1631, 1730, 1749, 1627, 1653, 1641, 1667],
+                [884, 1140, 854, 1125, 1119, 997, 1033, 1190]
+            ]
+        };
+
+        // Fungsi untuk memperbarui visualisasi berdasarkan filter
+        function updateVisualizations() {
+            const selectedBank = document.getElementById('bankSelect').value;
+            const selectedYear = document.getElementById('yearSelect').value;
+            const selectedVariable = document.getElementById('variableSelect').value;
+            
+            updateTimeSeries(selectedBank, selectedVariable);
+            updateScatterPlot(selectedBank, selectedYear);
+        }
+        
+        // Inisialisasi visualisasi
+        function initVisualizations() {
+            updateTimeSeries('all', 'ROA');
+            updateCoefficientPlot();
+            updateCorrelationMatrix();
+            updateScatterPlot('all', 'all');
+            
+            // Tambahkan event listener untuk filter
+            document.getElementById('bankSelect').addEventListener('change', updateVisualizations);
+            document.getElementById('yearSelect').addEventListener('change', updateVisualizations);
+            document.getElementById('variableSelect').addEventListener('change', updateVisualizations);
+        }
+        
+        // 1. Grafik Time Series
+        function updateTimeSeries(selectedBank, selectedVariable) {
+            const timeSeriesData = [];
+            const colors = ['#3b82f6', '#ef4444', '#10b981', '#f59e0b'];
+            const variableLabels = {
+                'ROA': 'ROA (%)',
+                'NPL': 'NPL (%)',
+                'CAR': 'CAR (%)',
+                'Digital': 'Investasi Digital (miliar IDR)'
+            };
+            
+            const variableData = {
+                'ROA': bankData.roa,
+                'NPL': bankData.npl,
+                'CAR': bankData.car,
+                'Digital': bankData.digital
+            };
+            
+            // Tentukan apakah menampilkan semua bank atau bank tertentu
+            const banksToShow = selectedBank === 'all' ? bankData.banks : [selectedBank];
+            
+            banksToShow.forEach((bank, index) => {
+                const bankIndex = bankData.banks.indexOf(bank);
+                
+                timeSeriesData.push({
+                    x: bankData.years,
+                    y: variableData[selectedVariable][bankIndex],
+                    name: bank,
+                    type: 'scatter',
+                    mode: 'lines+markers',
+                    line: {width: 3, shape: 'spline'},
+                    marker: {size: 8, color: colors[bankIndex]},
+                    hovertemplate: `%{x}<br>${bank}: %{y}<extra></extra>`
+                });
+            });
+            
+            const timeSeriesLayout = {
+                title: `Tren ${variableLabels[selectedVariable]} (${selectedBank === 'all' ? 'Semua Bank' : selectedBank})`,
+                xaxis: {title: 'Tahun'},
+                yaxis: {title: variableLabels[selectedVariable]},
+                legend: {orientation: 'h', y: -0.2},
+                margin: {t: 50, b: 80},
+                hovermode: 'closest',
+                showlegend: banksToShow.length > 1
+            };
+            
+            Plotly.react('timeSeriesPlot', timeSeriesData, timeSeriesLayout);
+        }
+        
+        // 2. Grafik Koefisien Regresi (Versi Perbaikan)
+        function updateCoefficientPlot() {
+            const coefData = [{
+                x: ['CAR', 'NPL', 'Investasi Digital'],
+                y: [0.355, -2.238, 0.00305],
+                type: 'bar',
+                marker: {
+                    color: ['rgba(59, 130, 246, 0.8)', 'rgba(239, 68, 68, 0.8)', 'rgba(16, 185, 129, 0.8)'],
+                    line: {
+                        width: 2,
+                        color: ['rgb(37, 99, 235)', 'rgb(220, 38, 38)', 'rgb(5, 150, 105)']
+                    }
+                },
+                error_y: {
+                    type: 'data',
+                    array: [0.230, 0.478, 0.0013],
+                    visible: true,
+                    thickness: 1.5
+                },
+                text: ['p=0.1343', 'p=0.0001', 'p=0.0234'],
+                textposition: 'outside',
+                textfont: {
+                    size: 14,
+                    color: ['#64748b', '#dc2626', '#059669']
+                }
+            }];
+            
+            const coefLayout = {
+                title: 'Pengaruh Faktor terhadap ROA dengan Interval Kepercayaan',
+                xaxis: {title: 'Variabel Independen'},
+                yaxis: {
+                    title: 'Koefisien Regresi',
+                    range: [-3, 1] // Pastikan ruang cukup untuk teks
+                },
+                annotations: [
+                    {
+                        x: 0.5,
+                        y: -2.7,
+                        text: '<b>Interpretasi Koefisien:</b><br>• CAR: Tidak signifikan (p=0.1343)<br>• NPL: Signifikan negatif (p=0.0001)<br>• Digital: Signifikan positif (p=0.0234)',
+                        showarrow: false,
+                        font: {size: 14},
+                        align: 'left',
+                        xref: 'paper',
+                        yref: 'paper',
+                        bordercolor: '#cbd5e1',
+                        borderwidth: 1,
+                        borderpad: 10,
+                        bgcolor: '#f8fafc',
+                        class: 'annotation-box'
+                    }
+                ],
+                margin: {t: 50, b: 100, l: 60, r: 40}, // Ruang lebih untuk teks
+                height: 500,
+                hovermode: 'closest'
+            };
+            
+            Plotly.react('coefPlot', coefData, coefLayout);
+        }
+        
+        // 3. Matriks Korelasi
+        function updateCorrelationMatrix() {
+            const corrData = [{
+                z: [
+                    [1.00, -0.41, -0.05, 0.35],
+                    [-0.41, 1.00, 0.77, 0.42],
+                    [-0.05, 0.77, 1.00, 0.25],
+                    [0.35, 0.42, 0.25, 1.00]
+                ],
+                x: ['ROA', 'CAR', 'NPL', 'Digital Investment'],
+                y: ['ROA', 'CAR', 'NPL', 'Digital Investment'],
+                type: 'heatmap',
+                colorscale: [
+                    [0, '#dc2626'],
+                    [0.5, '#f8fafc'],
+                    [1, '#2563eb']
+                ],
+                hoverongaps: false,
+                zmin: -1,
+                zmax: 1
+            }];
+            
+            const corrLayout = {
+                title: 'Matriks Korelasi Antar Variabel',
+                annotations: [],
+                margin: {t: 50, b: 100},
+                xaxis: {side: 'bottom'}
+            };
+            
+            for (let i = 0; i < 4; i++) {
+                for (let j = 0; j < 4; j++) {
+                    const value = corrData[0].z[i][j];
+                    const textColor = Math.abs(value) > 0.5 ? 'white' : 'black';
+                    
+                    corrLayout.annotations.push({
+                        x: corrData[0].x[j],
+                        y: corrData[0].y[i],
+                        text: value.toFixed(2),
+                        font: {color: textColor, size: 14},
+                        showarrow: false
+                    });
+                }
+            }
+            
+            Plotly.react('corrMatrix', corrData, corrLayout);
+        }
+        
+        // 4. Scatter Plot Hubungan
+        function updateScatterPlot(selectedBank, selectedYear) {
+            const scatterData = [];
+            const colors = ['#3b82f6', '#ef4444', '#10b981', '#f59e0b'];
+            const symbol = ['circle', 'square', 'diamond', 'cross'];
+            
+            // Tentukan apakah menampilkan semua bank atau bank tertentu
+            const banksToShow = selectedBank === 'all' ? bankData.banks : [selectedBank];
+            
+            // Tentukan apakah menampilkan semua tahun atau tahun tertentu
+            const yearsToShow = selectedYear === 'all' ? bankData.years : [parseInt(selectedYear)];
+            
+            banksToShow.forEach((bank, bankIndex) => {
+                const bankIdx = bankData.banks.indexOf(bank);
+                const x = [];
+                const y = [];
+                const customdata = [];
+                
+                bankData.years.forEach((year, yearIndex) => {
+                    if (yearsToShow.includes(year)) {
+                        x.push(bankData.npl[bankIdx][yearIndex]);
+                        y.push(bankData.roa[bankIdx][yearIndex]);
+                        customdata.push([
+                            bank,
+                            year,
+                            bankData.car[bankIdx][yearIndex],
+                            bankData.digital[bankIdx][yearIndex]
+                        ]);
+                    }
+                });
+                
+                scatterData.push({
+                    x: x,
+                    y: y,
+                    name: bank,
+                    mode: 'markers',
+                    type: 'scatter',
+                    marker: {
+                        size: 12,
+                        color: colors[bankIdx],
+                        symbol: symbol[bankIdx],
+                        opacity: 0.8,
+                        line: {width: 1, color: 'white'}
+                    },
+                    customdata: customdata,
+                    hovertemplate: `
+                        <b>%{customdata[0]} - %{customdata[1]}</b><br>
+                        ROA: %{y:.2f}%<br>
+                        NPL: %{x:.2f}%<br>
+                        CAR: %{customdata[2]:.2f}%<br>
+                        Investasi: Rp%{customdata[3]} miliar
+                        <extra></extra>
+                    `
+                });
+            });
+            
+            // Tambahkan trendline
+            const allNPL = [];
+            const allROA = [];
+            
+            bankData.banks.forEach((bank, bankIndex) => {
+                bankData.years.forEach((year, yearIndex) => {
+                    if (yearsToShow.includes(year) && 
+                       (selectedBank === 'all' || bank === selectedBank)) {
+                        allNPL.push(bankData.npl[bankIndex][yearIndex]);
+                        allROA.push(bankData.roa[bankIndex][yearIndex]);
+                    }
+                });
+            });
+            
+            scatterData.push({
+                x: allNPL,
+                y: allROA,
+                mode: 'lines',
+                type: 'scatter',
+                name: 'Trendline',
+                line: {color: '#dc2626', width: 3, dash: 'dash'},
+                showlegend: false,
+                hoverinfo: 'skip'
+            });
+            
+            const scatterLayout = {
+                title: 'Hubungan ROA dengan NPL' + (selectedBank !== 'all' ? ` (${selectedBank})` : ''),
+                xaxis: {title: 'NPL (%)'},
+                yaxis: {title: 'ROA (%)'},
+                annotations: [
+                    {
+                        x: Math.max(...allNPL) * 0.8,
+                        y: Math.min(...allROA) * 1.2,
+                        text: 'Hubungan Negatif',
+                        showarrow: false,
+                        font: {color: '#dc2626', size: 14}
+                    }
+                ],
+                legend: {orientation: 'h', y: -0.2},
+                margin: {t: 50, b: 100},
+                showlegend: banksToShow.length > 1
+            };
+            
+            Plotly.react('scatterPlot', scatterData, scatterLayout);
+        }
+        
+        // Inisialisasi visualisasi saat halaman dimuat
+        window.addEventListener('DOMContentLoaded', initVisualizations);
+    </script>
+</body>
+</html>
